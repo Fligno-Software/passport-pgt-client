@@ -1,0 +1,44 @@
+{
+    "name": "fld3/passport-pgt-client",
+    "description": "Laravel Passport Password Grant Tokens Client",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "James Carlo Luchavez",
+            "email": "jamescarlo.luchavez@fligno.com",
+            "homepage": "https://www.linkedin.com/in/jsluchavez"
+        }
+    ],
+    "homepage": "https://github.com/fld3/passport-pgt-client",
+    "keywords": ["Laravel", "PassportPgtClient"],
+    "require": {
+        "php": "^8.0",
+        "illuminate/support": "~7|~8|~9",
+        "fligno/api-sdk-kit": "^1.1"
+    },
+    "require-dev": {
+        "roave/security-advisories": "dev-latest",
+        "phpunit/phpunit": "~9.0",
+        "orchestra/testbench": "~5|~6|~7"
+    },
+    "autoload": {
+        "psr-4": {
+            "Fld3\\PassportPgtClient\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Fld3\\PassportPgtClient\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Fld3\\PassportPgtClient\\PassportPgtClientServiceProvider"
+            ],
+            "aliases": {
+                "PassportPgtClient": "Fld3\\PassportPgtClient\\Facades\\PassportPgtClient"
+            }
+        }
+    }
+}
