@@ -2,28 +2,15 @@
 
 namespace Fld3\PassportPgtClient;
 
-use Illuminate\Support\ServiceProvider;
+use Fligno\StarterKit\Providers\BaseStarterKitServiceProvider;
 
-class PassportPgtClientServiceProvider extends ServiceProvider
+/**
+ * Class PassportPgtClientServiceProvider
+ *
+ * @author James Carlo Luchavez <jamescarlo.luchavez@fligno.com>
+ */
+class PassportPgtClientServiceProvider extends BaseStarterKitServiceProvider
 {
-    /**
-     * Perform post-registration booting of services.
-     *
-     * @return void
-     */
-    public function boot(): void
-    {
-        // $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'fld3');
-        // $this->loadViewsFrom(__DIR__.'/../resources/views', 'fld3');
-        // $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
-        // $this->loadRoutesFrom(__DIR__.'/routes.php');
-
-        // Publishing is only necessary when using the CLI.
-        if ($this->app->runningInConsole()) {
-            $this->bootForConsole();
-        }
-    }
-
     /**
      * Register any package services.
      *
@@ -34,8 +21,8 @@ class PassportPgtClientServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__.'/../config/passport-pgt-client.php', 'passport-pgt-client');
 
         // Register the service the package provides.
-        $this->app->singleton('passport-pgt-client', function ($app) {
-            return new PassportPgtClient;
+        $this->app->singleton('passport-pgt-client', function ($app, $params) {
+            return new PassportPgtClient(collect($params)->get('auth_client_controller'));
         });
     }
 
@@ -44,7 +31,7 @@ class PassportPgtClientServiceProvider extends ServiceProvider
      *
      * @return array
      */
-    public function provides()
+    public function provides(): array
     {
         return ['passport-pgt-client'];
     }
