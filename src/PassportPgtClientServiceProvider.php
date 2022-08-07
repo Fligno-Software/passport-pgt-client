@@ -66,4 +66,13 @@ class PassportPgtClientServiceProvider extends BaseStarterKitServiceProvider
         // Registering package commands.
         // $this->commands([]);
     }
+
+    /**
+     * @param  bool  $is_api
+     * @return array
+     */
+    public function getDefaultRouteMiddleware(bool $is_api): array
+    {
+        return []; // Must be blank since middleware should be setup on Passport PGT Server.
+    }
 }

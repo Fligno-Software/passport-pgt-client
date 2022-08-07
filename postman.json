@@ -1,0 +1,1164 @@
+{
+	"info": {
+		"_postman_id": "44a6cceb-af1d-4de3-944c-a3e1e2703582",
+		"name": "Passport PGT Client-Server",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "jamescarlo.luchavez@fligno.co",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{local}}/api/login",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "SUCCESS",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "jamescarlo.luchavez@fligno.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "password",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{local}}/api/login",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "localhost"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 07 Aug 2022 13:37:02 GMT"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 07 Aug 2022 13:37:02 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.21"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "55"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": true,\n    \"code\": 200,\n    \"slug\": \"successfully_logged_in\",\n    \"message\": [\n        \"Successfully logged in.\"\n    ],\n    \"pagination\": [],\n    \"data\": {\n        \"token_type\": \"Bearer\",\n        \"expires_in\": 1296000,\n        \"access_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIyIiwianRpIjoiZTM4MDE4ZDFlMWMzYmFlZDU5NGQ4MjIzZThlOGRlYWUyZGE0ZDIyNzEyZWU0NGZiZTM4YmNmOWZiOWQ3MTcyNTE1ZDMwYjljMjk5MjhhMjkiLCJpYXQiOjE2NTk4Nzk0MjIuNzA5MjU4LCJuYmYiOjE2NTk4Nzk0MjIuNzA5MjY4LCJleHAiOjE2NjExNzU0MjIuNjUyMzE0LCJzdWIiOiIxNSIsInNjb3BlcyI6W119.eTQjOrhl2WSiEIxyA-MS1D6qGFk_dbNk73rlZGvJPv6-ka1DF2AQ5eJsNVc0TjQ-smkzSS_MwDCPf4o44HhxltBngSDZtdr51UD5T4caJB77pR8IKzfR30nxu2SsfFuZ8FLDerfIA3jRMQYzgaz_LdJhYh-_RBidcRRKYM-rmmv6ihv6IENbLcPUBoJE5keMPBDOfrolYzanUVR0xVfHI01ZDVCSYIdoaoeVb1KhTR_5d8Qcs2ZAn8TaGCBBmglQIyrbcTiuuog_GMXW3lAC-gFuMUIxpkuuukNbvUVXlBDh33A0iYXzaT_Z9Ox2sBBhTx5ObSiEQvlspGrR8VMksi0Izp7alye3e7R2ckdeKGXioW5mwvsK5zWHudZTX2DNqVRDfBLCXG7jjPLVmj2mp7t5oVU7jFpW1vrMemZAMNXu22eN2KFVAgaK9SEmtScYjp3l28kKG1AHHeZOApNQoVSQwR5ymPyqECwiac092goqMGpS_tcQIvano9Po2KA7XYbNVDwug3qZBEdjS3vTfi68dD2IG3nhieIewA2Ql4jctBWyRth0aSGznq8c4wHcQ-73X2Z6Mw2EqGx79kQajKZuj2JnomHced3q74xPbrWa1zi-sh2ob7G5B_d6AYCbDULuApnLY3SiPX5BJ51G_1j66rhGvScg1LDRRSEF9Jg\",\n        \"refresh_token\": \"def5020063ed2140257ceb7c9a4ab87d813841a4f1d048603061f65f6ce41d6db9f5b37b24e6d8d04ddf5608b42e2c35f2e311d5702cfdb5d55fc79cb5b3cabaa4a2a866fc3fbfd46548c03c61b1c960151766d0a9cf33b9fa86f982b497f9755b1ae56c2fed2134ac8479f3dbf4608da52109259ab1d305b73bcdfe0c3ae2d897bc147dbd2a54b2ea4225e57be5d29cf048b3fa02de8634045a95f1bec783b35321bb89279e4d263f5eedbcfb043ebac89cf65cf89409e645ccc6302be7a4cff5c1815cba670beadb3a5610797f1739b27b57e15d05273e68cd99e449efde514b1500b0993f39c45c34557bc84ad3a7794b5476d4fcb6836730fb2c5ed8b057b2c75dcda50da4038aecfb00ef01600245fe59c38372414df06b5edce67e39fe2d1523a10ca793cffe014fb699249b55b848d622e0f51232d39058158edf6662317d780882504845447ebb67bb2ff0fb036af2da0588da36ff34611d65830e3ce29e\"\n    }\n}"
+				},
+				{
+					"name": "FAILED",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "jamescarlo.luchavez@fligno.co",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "password",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{local}}/api/login",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "localhost"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 07 Aug 2022 13:54:58 GMT"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 07 Aug 2022 13:54:58 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.21"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "59"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": false,\n    \"code\": 400,\n    \"slug\": \"incorrect_username_or_password\",\n    \"message\": [\n        \"Incorrect username or password.\"\n    ],\n    \"pagination\": [],\n    \"errors\": []\n}"
+				}
+			]
+		},
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "jamescarlo.luchavez@finpay.co",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "James Carlo Luchavez",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{local}}/api/register",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"register"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "SUCCESS",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "jamescarlo.luchavez@finpay.co",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "James Carlo Luchavez",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{local}}/api/register",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"api",
+								"register"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "localhost"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 07 Aug 2022 13:37:50 GMT"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 07 Aug 2022 13:37:50 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.21"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "59"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": true,\n    \"code\": 200,\n    \"slug\": \"successfully_registered_user\",\n    \"message\": [\n        \"Successfully registered user.\"\n    ],\n    \"pagination\": [],\n    \"data\": {\n        \"user\": {\n            \"name\": \"James Carlo Luchavez\",\n            \"email\": \"jamescarlo.luchavez@finpay.co\",\n            \"updated_at\": \"2022-08-07T13:37:50.000000Z\",\n            \"created_at\": \"2022-08-07T13:37:50.000000Z\",\n            \"id\": 16\n        },\n        \"tokens\": {\n            \"token_type\": \"Bearer\",\n            \"expires_in\": 1296000,\n            \"access_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIyIiwianRpIjoiOTg1MmQwYTlkNWJmMDY5MmYyMDQzZjg3ZWU3ZmRhMjAxZDlkZDJiYzQzZGRiODRhNzc5MzAzZGI2ZDFhNmM3MWQ3NGU5YjVkMWNkOGUyM2IiLCJpYXQiOjE2NTk4Nzk0NzAuMzM1NjQ0LCJuYmYiOjE2NTk4Nzk0NzAuMzM1NjQ4LCJleHAiOjE2NjExNzU0NzAuMzA2NjQyLCJzdWIiOiIxNiIsInNjb3BlcyI6W119.XX2ac-3zkREcBdo-sIsWt_ya0XUDATTAQs3h8-nXtdWqD-A9edCidEC3zQfzlzgHxA9Qu-H29O3e6uaS97OqQri3-pTMj3E0uGGAj1pjdHQdTJol_FW_MrGw8dQMXDodsoozHBkE_HC1cDVircykGURMcpdSf3PfkTuwoQj7dy39CEO8nXb90Ste-cQmnfxFAROpUHmro4BDE4fsnOrVMa1gbxZue9Q9uw4na7d8c1VL37LDK7fbstF-qQQHFxGgQaRn-oODHsrahkrl1VI-0Baxa9Q0-nsj8LCZaBXN4flvWs4OPoIDVuJe8fDmTXse5qZvfKN94SXGzpftpTDJ55S__fpr9BXEyIaqyek4bR8LZ6pFaoanLKwEk1-9dNcdXT_aL0e9iq5lMY8EVszRO7j8vBlCHte4s5j5RelW9G40F902-iIttAq19weIlcc6NhTCxJvoGejjfTdEHMmj7WZDzvmswZDqrKLV51jrZdEGd5cDbaE6ixESBUu_m4vuifof0SiQPyNfp-1rEG_LrUhhxQmAgWVdSmPfxIgAIIm9E7R121BU6rMvuxzTPFzjFZUu0hoIw5Asleg20BrvZBz9iPGmKF5bLQlDqxb37l_sc1_BbNsR5hmQIBWh5Bxw7R-4xEkzve9ww-qFKR6II8f-hUqPVJ0Xae5zpes8gNM\",\n            \"refresh_token\": \"def502002dcca727d49a9186a700ab7559c8eddee6f3f390c03218d95c9fa1cf51cb4206026d126b42b4346c81344c3427f4f1ae7ac28d2a3505e1936e37166ae7f7d186e211f3db88089f5b2d5a6e2d338eff7ac5f6caf30222e0d13f030ea08963bc4926fb42db52c71f94210df8fbabf3b37aa4c5b82ca53ba3cf0f194d4d17753a76222982735721b7ed8cecf0fbfc27511f8380ef16a8a20cd0450d25cb39737eea2cb7387594ce610f22bd23382d50bd5b261f646e41225b033f5e1788b19c644fd29396192d6fdcaaeece41ffabe61576433a2625431f884dd2cb1cbe09755847da6ec20d6c513fa69c379848edf366ffc63648ba6ee8ba58ea8df3d16bf312bde0ec1ef3d8dcb78c6ca547031e2ceae8572eb492db33a5c6027cbf20414796e5e6d34bc992085b8dea0e25ff519a7e162aeb402d3db27b75c516807a22a49f2ce72cdda5c4dd6d32ddfe4a395220c2e7c2c500718b3d63ac44a7f465853d\"\n        }\n    }\n}"
+				},
+				{
+					"name": "FAILED",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "jamescarlo.luchavez@finpay.co",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "James Carlo Luchavez",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{local}}/api/register",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"api",
+								"register"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "localhost"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 07 Aug 2022 13:54:23 GMT"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 07 Aug 2022 13:54:23 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.21"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "58"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": false,\n    \"code\": 400,\n    \"slug\": \"failed_to_create_new_user\",\n    \"message\": [\n        \"Failed to create new user.\"\n    ],\n    \"pagination\": [],\n    \"errors\": []\n}"
+				}
+			]
+		},
+		{
+			"name": "Login (Server)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "adell69@example.org",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "83Vrl8KVIPU8x72wbkNYSlC8JJgywq06LO9qVkyY",
+							"type": "text"
+						},
+						{
+							"key": "scope",
+							"value": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{local}}/oauth/token",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"oauth",
+						"token"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "SUCCESS",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "adell69@example.org",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "83Vrl8KVIPU8x72wbkNYSlC8JJgywq06LO9qVkyY",
+									"type": "text"
+								},
+								{
+									"key": "scope",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{local}}/oauth/token",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"oauth",
+								"token"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "localhost"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 07 Aug 2022 13:38:44 GMT"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 07 Aug 2022 13:38:44 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.21"
+						},
+						{
+							"key": "pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-store, private"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json; charset=UTF-8"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "58"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"token_type\": \"Bearer\",\n    \"expires_in\": 1296000,\n    \"access_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIyIiwianRpIjoiYmZjNDhiNTcwZGI2MzliZDRlMDk4YzQ4ZTVhNjkwYThmNzY0ZjgyYWUyZTEwNzJmMTA4MGY1Y2IyMWFmMzZiNTM4MWU4MzVhMjM4MmE2NDMiLCJpYXQiOjE2NTk4Nzk1MjQuMjIxODkyLCJuYmYiOjE2NTk4Nzk1MjQuMjIxODk3LCJleHAiOjE2NjExNzU1MjQuMTg0NzM3LCJzdWIiOiIxNSIsInNjb3BlcyI6W119.PHD7yyHwW9Pjr0zqvtygWqv9L34d9vVLa5ZNnybtfr4rgl-pZInwuxgS_FJPGCaENKUj66oDeA_zkuHREPzKKa8rb4XHcu5qSKDUBqXZrokaPJ1jiHtk2RaFPPki1z2Q94XPJ3ENb-xisLe0GP2l0dorOIhYM9M_PhXppKDHq8GxRQcQHsgHT1Gh505IzASeiCh3b6NvqzhxmPam-jN7qV1plLhQLiml37j3iDpd8RvD-Cimzp4F5IkF7qs7x2_ZWqry5eRPLvOtI6puXIaTA8OVtVC7MRuGj6X6j84rgK5_DQflFzc9BHFvDOHBZHIqeZPtwOtJdhvJ6LVaZSRMmg4u7Ta8xTd2Yh_btp1bZZL9VQf_y9XHthoKb97d0MuVx1ZU6Lm-9bp5gSXEONanFvXKhKBw5nVJlj_ITEfobE4znRu885b9kqSgwB7tG9VRTwwpKoup-P5OfIdUOYI8uzi0eN5m0Wu4n-rpXhijNf-45SweMOki_69a_ELABBVWgR5vDa4aIR-TRlMCO7G5xq1ZXnzqfrdO0W140-w2gwqXzlh5xybR0xKoq0x3aXE7yWqOva3ObZauZzLhq-VWW45AT5eEyls_cER5twEnHqBgsj4XL9Gs3E1OeYxUp33mJBkttnNwUaDwlFmPwyBi3HdTcwEqAwgtr2vot1vwe3A\",\n    \"refresh_token\": \"def5020053b7b08cf10df431c25bb2a1efa677fcbccf6de806782d85ded6c9fdb6622e0447b3bb6c941810839d90f87097b39601d07ca8224de496b4100cbc746e271efa9f82730d02c4a8b1c62aa65a5e8936897ad7c20a8648ab0801f21b85ff70b18c077d99832aad06f9db36ac8b4e65a3f4818f42a47192fddc76a8eb7fbf04c3fd8b0c2ae1fa845424c85521dcac92a42e5578004b68c670018352dcadce6e2bf352162e88ef691217f747095facab965d4df79e55574831afbca4cc56286fa728faa257fb2ed5df8779fdf4f1db4aced4b78d03bbeb5d08c920391d3154dfb9b83598e14ae42e39c85cd3358511f2e3a8631fd31a94d91a0e8f4be30bbe7cbe66908ab41dedb6efff8d3ca7728494ed2e48a5c9e12eb437743150c20a6f08d52d0f76608bcfb49a7b583a35793d038cbcf0a753128e498d17f0891eccacb26c5d0c00dbbf3ae450e61c9aefe15fe00c419931a5592e7dbcb24be70b864a9c\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Refresh Token",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "refresh_token",
+							"value": "{{refresh_token}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{local}}/api/refresh-token",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"refresh-token"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "SUCCESS",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "refresh_token",
+									"value": "{{refresh_token}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{local}}/api/refresh-token",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"api",
+								"refresh-token"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "localhost"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 07 Aug 2022 13:45:41 GMT"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 07 Aug 2022 13:45:41 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.21"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "58"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": true,\n    \"code\": 200,\n    \"slug\": \"successfully_refreshed_tokens\",\n    \"message\": [\n        \"Successfully refreshed tokens.\"\n    ],\n    \"pagination\": [],\n    \"data\": {\n        \"token_type\": \"Bearer\",\n        \"expires_in\": 1296000,\n        \"access_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIyIiwianRpIjoiZWQ1OGYyMDM3ZDE2MTE0OGVkZTZjNzJlMmYyMjdjODE0ZDJhMGUxNDllYmYwNTlmNjFhZjJkOTVlYWE5NWM2MzE3ZGU5MDdiMmJiOTZjMDkiLCJpYXQiOjE2NTk4Nzk5NDEuNjA2NTM0LCJuYmYiOjE2NTk4Nzk5NDEuNjA2NTQsImV4cCI6MTY2MTE3NTk0MS41NjEwMzQsInN1YiI6IjE1Iiwic2NvcGVzIjpbXX0.pVMNpMSG257NRTiyDEFZXxbsXv5hO_yYJaijz_dU_c6dhrC5gv4NBC3OiZZq6tcJH5aoSBu3RfvMhBj0yUiPWht_gFhTGhoTN-rURwffN7nf8kQpCfJP5BE2q7BUWZFO-mk7ePru3akznEwuRiIzqIVIvPPrRgKY8fPIbw49eG-xr1ijCB2KZlT8js9Tp4YWNLYey0aiHUr9SjHYVQliZNEpdhEKHkmuP8Fm9_3WgWjGtFyNLQ2RI3-ADI8C1i_7r0S2kux2tVRkZdA2cto8xoNKzwC8TqU7leJYZbQd-YxZluWzu7WgZErYRYk473mQLxiDxGCZs2tT_-6OTU__jmhHiLl6i4283co6DMEalUy3fAMRHS0i7mkIa8jY3D3Vp_59wrGWoTcmMpOpsbEM_9j17YK0Cr7a4ro_dqkBMGkmOXplctnN4lqslFh5VCEL8OzKzF2ky1M0zSpMA9MdkTeiAjQ5sZLi47JlsNOEkpXcKhENFQHD5Z7JS8detmgy5GVDbk14spfwCr2_eJK2JemrmgvmHugFmUjjzWfQtEvn3CVUNT3f_Pvq9ODOs3tJ4Hdd1hi5NKKoEjRDdRRxddquFvy6DBNP5UpPJaJizUGsHg9BH5u1gCK8qr4ye_nBmiqz8uenyBqvc28DAsPR2tIW2-c-F50ktsjQ-xdsUMM\",\n        \"refresh_token\": \"def50200be0151fe8cb23607d211052477bc7a3b2a3236387554b5e5c72a062a01dd32e2ac53bbf58c6be00c72c490ede2b7ea042103f27ed9bd593281381fdf3f2848efbbe3b229fdca2f6acb48ca0147b973d7bad327ee29afe80f829279b016861af78ab261ddc72151f3df007138f33338c9ccf840bfe7e0bb03803929a27b0f7095afd5a63c35d71dc1e5f4a6f755dcf85873e165cdcacc8f7b305b2c0e29d3d5ae941abd349e5f152540038268be08dc917b9d7c522f659e8f3d6fe63c819c47b8e6bc595cec7034fe15ff3c8164de2221fed40881809f7c823dddfa9d2f8996da6c8728d5e26f6f8f8f141b9604eaef758a0a8f04571f9f5c6e449d94dfb3ed554b95ae8ae59ce894189c39ce6cbe618f9a174215973f56354cbf5c57a39e98b5ccd55788709a26e7221a421d6a7bcc425189ed2065e0dbdbba565a65bcc78716d237e092429cb4ee6cb1c1a8dcadbe4ac0c24edeb9b1cbc7c21a15e75f79\"\n    }\n}"
+				},
+				{
+					"name": "FAILED",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "refresh_token",
+									"value": "{{refresh_token}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{local}}/api/refresh-token",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"api",
+								"refresh-token"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "localhost"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 07 Aug 2022 13:53:57 GMT"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 07 Aug 2022 13:53:57 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.21"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "59"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": false,\n    \"code\": 400,\n    \"slug\": \"failed_to_refresh_token\",\n    \"message\": [\n        \"Failed to refresh token.\"\n    ],\n    \"pagination\": [],\n    \"errors\": []\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Me",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{local}}/api/me",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"me"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "SUCCESS",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{local}}/api/me",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"api",
+								"me"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "localhost"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 07 Aug 2022 13:51:45 GMT"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 07 Aug 2022 13:51:45 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.21"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "59"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": true,\n    \"code\": 200,\n    \"slug\": \"successfully_fetched_user\",\n    \"message\": [\n        \"Successfully fetched user.\"\n    ],\n    \"pagination\": [],\n    \"data\": {\n        \"id\": 15,\n        \"name\": \"James Carlo Luchavez\",\n        \"email\": \"jamescarlo.luchavez@fligno.com\",\n        \"email_verified_at\": null,\n        \"created_at\": \"2022-08-07T13:34:50.000000Z\",\n        \"updated_at\": \"2022-08-07T13:34:50.000000Z\"\n    }\n}"
+				},
+				{
+					"name": "FAILED",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{local}}/api/me",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"api",
+								"me"
+							]
+						}
+					},
+					"status": "Forbidden",
+					"code": 403,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "localhost"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 07 Aug 2022 13:53:10 GMT"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 07 Aug 2022 13:53:10 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.21"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "58"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": false,\n    \"code\": 403,\n    \"slug\": \"you_do_not_have_the_necessary_permission_to_access_this_resource\",\n    \"message\": [\n        \"You do not have the necessary permission to access this resource.\"\n    ],\n    \"pagination\": [],\n    \"errors\": []\n}"
+				}
+			]
+		},
+		{
+			"name": "Logout",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{local}}/api/logout",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"logout"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "SUCCESS",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{local}}/api/logout",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"api",
+								"logout"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "localhost"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 07 Aug 2022 13:55:29 GMT"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 07 Aug 2022 13:55:29 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.21"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "58"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": true,\n    \"code\": 200,\n    \"slug\": \"successfully_logged_out\",\n    \"message\": [\n        \"Successfully logged out.\"\n    ],\n    \"pagination\": [],\n    \"data\": []\n}"
+				},
+				{
+					"name": "FAILED",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{local}}/api/logout",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"api",
+								"logout"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "localhost"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 07 Aug 2022 13:55:43 GMT"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 07 Aug 2022 13:55:43 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.21"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "57"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": false,\n    \"code\": 400,\n    \"slug\": \"failed_to_logout_user\",\n    \"message\": [\n        \"Failed to logout user.\"\n    ],\n    \"pagination\": [],\n    \"errors\": []\n}"
+				}
+			]
+		}
+	]
+}
