@@ -8,7 +8,7 @@ use Fld3\PassportPgtClient\PassportPgtClient;
 
 if (! function_exists('passportPgtClient')) {
     /**
-     * @param string|null $authClientControllerClass
+     * @param  string|null  $authClientControllerClass
      * @return PassportPgtClient
      */
     function passportPgtClient(string $authClientControllerClass = null): PassportPgtClient
@@ -21,7 +21,7 @@ if (! function_exists('passportPgtClient')) {
 
 if (! function_exists('passport_pgt_client')) {
     /**
-     * @param string|null $authClientControllerClass
+     * @param  string|null  $authClientControllerClass
      * @return PassportPgtClient
      */
     function passport_pgt_client(string $authClientControllerClass = null): PassportPgtClient

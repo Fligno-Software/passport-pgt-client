@@ -2,19 +2,16 @@
 
 namespace Fld3\PassportPgtClient;
 
-use Fld3\PassportPgtClient\Abstracts\BaseAuthClientController;
-use Fld3\PassportPgtClient\Http\Controllers\AuthClientController;
-use Fld3\PassportPgtClient\Traits\HasAuthClientGetSelfTrait;
-use Fld3\PassportPgtClient\Traits\HasAuthClientLoginTrait;
-use Fld3\PassportPgtClient\Traits\HasAuthClientLogoutTrait;
-use Fld3\PassportPgtClient\Traits\HasAuthClientRefreshTokenTrait;
+use Fld3\PassportPgtClient\Http\Controllers\DefaultAuthController;
+use Fld3\PassportPgtClient\Traits\HasAuthMethodsTrait;
 use Fligno\ApiSdkKit\Models\AuditLog;
+use Fligno\StarterKit\Traits\HasTaggableCacheTrait;
 use GuzzleHttp\Promise\PromiseInterface;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Client\Response;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Collection;
 use RuntimeException;
-use Throwable;
 
 /**
  * Class PassportPgtClient
@@ -23,46 +20,30 @@ use Throwable;
  */
 class PassportPgtClient
 {
-    /**
-     * @var string
-     */
-    protected string $authClientController;
+    use HasAuthMethodsTrait, HasTaggableCacheTrait;
 
     /**
      * @var array
      */
-    protected array $loginAuthController = [];
+    protected array $controllers = [];
 
     /**
-     * @var array
+     * @param  string|null  $authController
      */
-    protected array $logoutAuthController = [];
-
-    /**
-     * @var array
-     */
-    protected array $meAuthController = [];
-
-    /**
-     * @var array
-     */
-    protected array $refreshTokenAuthController = [];
-
-    /**
-     * @param string|null $authClientControllerClass
-     */
-    public function __construct(string $authClientControllerClass = null)
+    public function __construct(string $authController = null)
     {
-        if ($authClientControllerClass) {
-            try {
-                $this->setAuthClientController($authClientControllerClass);
-            } catch (Throwable) {
-            }
-        }
+        // Rehydrate first
+        $this->controllers = $this->getControllers()->toArray();
 
-        if (! isset($this->authClientController)) {
-            $this->authClientController = AuthClientController::class;
-        }
+        $this->setAuthController($authController ?? DefaultAuthController::class, false, false);
+    }
+
+    /**
+     * @return string
+     */
+    public function getMainTag(): string
+    {
+        return 'passport-pgt-client';
     }
 
     /***** CONFIG-RELATED *****/
@@ -94,141 +75,159 @@ class PassportPgtClient
     /***** CONTROLLER-RELATED *****/
 
     /**
-     * @param string $authServerControllerClass
+     * @param  string|null  $method
+     * @param  bool  $rehydrate
+     * @return Collection|array|string|null
      */
-    public function setAuthClientController(string $authServerControllerClass): void
+    public function getControllers(string $method = null, bool $rehydrate = false): Collection|array|string|null
     {
-        if (is_subclass_of($authServerControllerClass, BaseAuthClientController::class)) {
-            $this->authClientController = $authServerControllerClass;
-        } else {
-            throw new RuntimeException('Controller class does not extend BaseAuthServerController class.');
+        $tags = $this->getTags();
+        $key = 'controllers';
+
+        $result = $this->getCache($tags, $key, fn () => collect($this->controllers), $rehydrate);
+
+        if ($method) {
+            return $result->get($method);
+        }
+
+        return $result;
+    }
+
+    /**
+     * @param  string  $controller
+     * @param  bool  $override
+     * @param  bool  $throw_error
+     */
+    public function setAuthController(string $controller, bool $override = false, bool $throw_error = true): void
+    {
+        if (is_subclass_of($controller, Controller::class)) {
+            $this->setRegisterController($controller, $override, $throw_error);
+            $this->setLoginController($controller, $override, $throw_error);
+            $this->setLogoutController($controller, $override, $throw_error);
+            $this->setMeController($controller, $override, $throw_error);
+            $this->setRefreshTokenController($controller, $override, $throw_error);
         }
     }
 
     /**
-     * @return string|BaseAuthClientController
+     * @param  string  $method
+     * @param  string  $controller
+     * @param  bool  $override
+     * @param  bool  $throw_error
+     * @return bool
      */
-    public function getAuthClientController(): string|BaseAuthClientController
+    protected function setController(string $method, string $controller, bool $override = false, bool $throw_error = true): bool
     {
-        return $this->authClientController;
-    }
+        if ($this->mustBeController($controller)) {
+            $controllers = $this->getControllers();
+            if ($controllers->has($method) && ! $override) {
+                if ($throw_error) {
+                    throw new RuntimeException('Controller for '.$method.' is already set.');
+                }
 
-    /**
-     * @param string $loginAuthControllerClass
-     * @return void
-     */
-    public function setLoginAuthController(string $loginAuthControllerClass): void
-    {
-        if (is_subclass_of($loginAuthControllerClass, Controller::class)) {
-            if (class_uses_trait($loginAuthControllerClass, HasAuthClientLoginTrait::class)) {
-                $this->loginAuthController = [$loginAuthControllerClass, 'login'];
-            } else {
-                $this->loginAuthController = [$loginAuthControllerClass];
+                return false;
             }
-        }
-    }
 
-    /**
-     * @return array
-     */
-    public function getLoginAuthController(): array
-    {
-        if (count($this->loginAuthController)) {
-            return $this->loginAuthController;
-        }
+            // Proceed with setting
 
-        return [$this->authClientController, 'login'];
-    }
+            $value = null;
 
-    /**
-     * @param string $logoutAuthControllerClass
-     * @return void
-     */
-    public function setLogoutAuthController(string $logoutAuthControllerClass): void
-    {
-        if (is_subclass_of($logoutAuthControllerClass, Controller::class)) {
-            if (class_uses_trait($logoutAuthControllerClass, HasAuthClientLogoutTrait::class)) {
-                $this->logoutAuthController = [$logoutAuthControllerClass, 'logout'];
-            } else {
-                $this->logoutAuthController = [$logoutAuthControllerClass];
+            if ($this->isInvokable($controller)) {
+                $value = $controller;
+            } elseif ($this->mustHaveMethod($method, $controller)) {
+                $value = [$controller, $method];
             }
-        }
-    }
 
-    /**
-     * @return array
-     */
-    public function getLogoutAuthController(): array
-    {
-        if (count($this->logoutAuthController)) {
-            return $this->logoutAuthController;
-        }
+            if ($value) {
+                $controllers->put($method, $value);
+                $this->controllers = $controllers->toArray();
+                $this->getControllers(rehydrate: true);
 
-        return [$this->authClientController, 'logout'];
-    }
-
-    /**
-     * @param array $meAuthController
-     * @return void
-     */
-    public function setMeAuthController(array $meAuthController): void
-    {
-        if (is_subclass_of($meAuthController, Controller::class)) {
-            if (class_uses_trait($meAuthController, HasAuthClientGetSelfTrait::class)) {
-                $this->meAuthController = [$meAuthController, 'me'];
-            } else {
-                $this->meAuthController = [$meAuthController];
+                return true;
             }
-        }
-    }
 
-    /**
-     * @return array
-     */
-    public function getMeAuthController(): array
-    {
-        if (count($this->meAuthController)) {
-            return $this->meAuthController;
-        }
-
-        return [$this->authClientController, 'me'];
-    }
-
-    /**
-     * @param array $refreshTokenAuthController
-     * @return void
-     */
-    public function setRefreshTokenAuthController(array $refreshTokenAuthController): void
-    {
-        if (is_subclass_of($refreshTokenAuthController, Controller::class)) {
-            if (class_uses_trait($refreshTokenAuthController, HasAuthClientRefreshTokenTrait::class)) {
-                $this->refreshTokenAuthController = [$refreshTokenAuthController, 'refreshToken'];
-            } else {
-                $this->refreshTokenAuthController = [$refreshTokenAuthController];
+            if ($throw_error) {
+                throw new RuntimeException($controller.' must either be invokable or has '.$method.' method.');
             }
+
+            return false;
         }
+
+        return false;
     }
 
     /**
-     * @return array
+     * @param  string  $registerController
+     * @param  bool  $override
+     * @param  bool  $throw_error
+     * @return bool
      */
-    public function getRefreshTokenAuthController(): array
+    public function setRegisterController(string $registerController, bool $override = false, bool $throw_error = true): bool
     {
-        if (count($this->refreshTokenAuthController)) {
-            return $this->refreshTokenAuthController;
-        }
+        return $this->setController('register', $registerController, $override, $throw_error);
+    }
 
-        return [$this->authClientController, 'refreshToken'];
+    /**
+     * @param  string  $loginController
+     * @param  bool  $override
+     * @param  bool  $throw_error
+     * @return bool
+     */
+    public function setLoginController(string $loginController, bool $override = false, bool $throw_error = true): bool
+    {
+        return $this->setController('login', $loginController, $override, $throw_error);
+    }
+
+    /**
+     * @param  string  $logoutControllerClass
+     * @param  bool  $override
+     * @param  bool  $throw_error
+     * @return bool
+     */
+    public function setLogoutController(string $logoutControllerClass, bool $override = false, bool $throw_error = true): bool
+    {
+        return $this->setController('logout', $logoutControllerClass, $override, $throw_error);
+    }
+
+    /**
+     * @param  string  $meController
+     * @param  bool  $override
+     * @param  bool  $throw_error
+     * @return bool
+     */
+    public function setMeController(string $meController, bool $override = false, bool $throw_error = true): bool
+    {
+        return $this->setController('me', $meController, $override, $throw_error);
+    }
+
+    /**
+     * @param  string  $refreshTokenController
+     * @param  bool  $override
+     * @param  bool  $throw_error
+     * @return bool
+     */
+    public function setRefreshTokenController(string $refreshTokenController, bool $override = false, bool $throw_error = true): bool
+    {
+        return $this->setController('refreshToken', $refreshTokenController, $override, $throw_error);
     }
 
     /***** AUTH-RELATED FUNCTIONS *****/
 
     /**
-     * @param string $username
-     * @param string $password
-     * @return AuditLog|PromiseInterface|Builder|Response
+     * @param  array  $data
+     * @return AuditLog|PromiseInterface|Builder|Response|\Illuminate\Http\Response|null
      */
-    public function login(string $username, string $password): AuditLog|Builder|PromiseInterface|Response
+    public function register(array $data): \Illuminate\Http\Response|AuditLog|Builder|PromiseInterface|Response|null
+    {
+        return makeRequest($this->getPassportUrl())->data($data)->executePost('api/oauth/register');
+    }
+
+    /**
+     * @param  string  $username
+     * @param  string  $password
+     * @return AuditLog|PromiseInterface|Builder|Response|\Illuminate\Http\Response|null
+     */
+    public function login(string $username, string $password): \Illuminate\Http\Response|AuditLog|Builder|PromiseInterface|Response|null
     {
         $data = [
             'grant_type' => 'password',
@@ -243,10 +242,10 @@ class PassportPgtClient
     }
 
     /**
-     * @param string $refresh_token
-     * @return AuditLog|PromiseInterface|Builder|Response
+     * @param  string  $refresh_token
+     * @return AuditLog|PromiseInterface|Builder|Response|\Illuminate\Http\Response|null
      */
-    public function refreshToken(string $refresh_token): AuditLog|Builder|PromiseInterface|Response
+    public function refreshToken(string $refresh_token): \Illuminate\Http\Response|AuditLog|Builder|PromiseInterface|Response|null
     {
         $data = [
             'grant_type' => 'refresh_token',
@@ -260,26 +259,26 @@ class PassportPgtClient
     }
 
     /**
-     * @param string|null $token
-     * @return AuditLog|PromiseInterface|Builder|Response
+     * @param  string|null  $token
+     * @return AuditLog|PromiseInterface|Builder|Response|\Illuminate\Http\Response|null
      */
-    public function logout(string|null $token): AuditLog|Builder|PromiseInterface|Response
+    public function logout(string|null $token): \Illuminate\Http\Response|AuditLog|Builder|PromiseInterface|Response|null
     {
         $headers = [
-            'Authorization' => 'Bearer ' . $token
+            'Authorization' => 'Bearer '.$token,
         ];
 
         return makeRequest($this->getPassportUrl())->headers($headers)->executePost('api/oauth/logout');
     }
 
     /**
-     * @param string|null $token
-     * @return AuditLog|PromiseInterface|Builder|Response
+     * @param  string|null  $token
+     * @return AuditLog|PromiseInterface|Builder|Response|\Illuminate\Http\Response|null
      */
-    public function getSelf(string|null $token): AuditLog|Builder|PromiseInterface|Response
+    public function getSelf(string|null $token): \Illuminate\Http\Response|AuditLog|Builder|PromiseInterface|Response|null
     {
         $headers = [
-            'Authorization' => 'Bearer ' . $token
+            'Authorization' => 'Bearer '.$token,
         ];
 
         return makeRequest($this->getPassportUrl())->headers($headers)->executeGet('api/oauth/me');

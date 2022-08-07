@@ -14,7 +14,7 @@
     "require": {
         "php": "^8.0",
         "illuminate/support": "~7|~8|~9",
-        "fligno/api-sdk-kit": "^1.1"
+        "fligno/api-sdk-kit": "^1.2"
     },
     "require-dev": {
         "roave/security-advisories": "dev-latest",
