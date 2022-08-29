@@ -18,14 +18,20 @@ class DefaultAuthController extends Controller
      *
      * Register a new user.
      *
-     * @group Authentication
+     * @group Authentication (Client)
      *
      * @param  Request  $request
      * @return JsonResponse
      */
     public function register(Request $request): JsonResponse
     {
-        $log = passportPgtClient()->register($request->all());
+        $validated = $request->validate([
+            'email' => 'required',
+            'name' => 'required',
+            'password' => 'required',
+        ]);
+
+        $log = passportPgtClient()->register($validated);
 
         if ($log?->isSuccessful()) {
             return response()->json($log->data, $log->status);
@@ -42,17 +48,19 @@ class DefaultAuthController extends Controller
      *
      * Email and password are required to login.
      *
-     * @group Authentication
-     *
-     * @bodyParam username string required The account's username Example: kaylin.kuhlman@example.org
-     * @bodyParam password string required The account's password Example: password
+     * @group Authentication (Client)
      *
      * @param  Request  $request
      * @return JsonResponse
      */
     public function login(Request $request): JsonResponse
     {
-        $log = passportPgtClient()->login($request->get('username'), $request->get('password'));
+        $validated = $request->validate([
+            'username' => 'required',
+            'password' => 'required',
+        ]);
+
+        $log = passportPgtClient()->login($validated['username'], $validated['password']);
 
         if ($log?->isSuccessful()) {
             return customResponse()
@@ -71,7 +79,8 @@ class DefaultAuthController extends Controller
     /**
      * Logout
      *
-     * @group Authentication
+     * @group Authentication (Client)
+     * @authenticated
      *
      * @param  Request  $request
      * @return JsonResponse
@@ -93,14 +102,18 @@ class DefaultAuthController extends Controller
     /**
      * Refresh Token
      *
-     * @group Authentication
+     * @group Authentication (Client)
      *
      * @param  Request  $request
      * @return JsonResponse
      */
     public function refreshToken(Request $request): JsonResponse
     {
-        $log = passportPgtClient()->refreshToken($request->get('refresh_token'));
+        $validated = $request->validate([
+            'refresh_token' => 'required'
+        ]);
+
+        $log = passportPgtClient()->refreshToken($validated['refresh_token']);
 
         if ($log?->isSuccessful()) {
             return customResponse()
@@ -117,9 +130,10 @@ class DefaultAuthController extends Controller
     }
 
     /**
-     * Refresh Token
+     * Get Self
      *
-     * @group Authentication
+     * @group Authentication (Client)
+     * @authenticated
      *
      * @param  Request  $request
      * @return JsonResponse
