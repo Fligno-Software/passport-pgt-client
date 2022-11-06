@@ -4,6 +4,13 @@ namespace Fld3\PassportPgtClient\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
+/**
+ * Class PassportPgtClient
+ *
+ * @author James Carlo Luchavez <jamescarlo.luchavez@fligno.com>
+ *
+ * @see \Fld3\PassportPgtClient\Services\PassportPgtClient
+ */
 class PassportPgtClient extends Facade
 {
     /**

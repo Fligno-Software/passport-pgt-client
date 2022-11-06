@@ -33,8 +33,8 @@ class DefaultAuthController extends Controller
 
         $log = passportPgtClient()->register($validated);
 
-        if ($log?->isSuccessful()) {
-            return response()->json($log->data, $log->status);
+        if ($log->getStatusFromResponse() == 200 && $log->getDataFromResponse()->count()) {
+            return response()->json($log->getDataFromResponse(), $log->getStatusFromResponse());
         }
 
         return customResponse()
@@ -62,10 +62,10 @@ class DefaultAuthController extends Controller
 
         $log = passportPgtClient()->login($validated['username'], $validated['password']);
 
-        if ($log?->isSuccessful()) {
+        if ($log->getStatusFromResponse() == 200) {
             return customResponse()
                 ->success()
-                ->data($log->data)
+                ->data($log->getDataFromResponse())
                 ->message('Successfully logged in.')
                 ->generate();
         }
@@ -89,8 +89,8 @@ class DefaultAuthController extends Controller
     {
         $log = passportPgtClient()->logout($request->bearerToken());
 
-        if ($log?->isSuccessful()) {
-            return response()->json($log->data, $log->status);
+        if ($log->getStatusFromResponse() == 200) {
+            return response()->json($log->getDataFromResponse(), $log->getStatusFromResponse());
         }
 
         return customResponse()
@@ -110,15 +110,15 @@ class DefaultAuthController extends Controller
     public function refreshToken(Request $request): JsonResponse
     {
         $validated = $request->validate([
-            'refresh_token' => 'required'
+            'refresh_token' => 'required',
         ]);
 
         $log = passportPgtClient()->refreshToken($validated['refresh_token']);
 
-        if ($log?->isSuccessful()) {
+        if ($log->getStatusFromResponse() == 200) {
             return customResponse()
                 ->success()
-                ->data($log->data)
+                ->data($log->getDataFromResponse())
                 ->message('Successfully refreshed tokens.')
                 ->generate();
         }
@@ -142,8 +142,8 @@ class DefaultAuthController extends Controller
     {
         $log = passportPgtClient()->getSelf($request->bearerToken());
 
-        if ($log?->isSuccessful()) {
-            return response()->json($log->data, $log->status);
+        if ($log->getStatusFromResponse() == 200) {
+            return response()->json($log->getDataFromResponse(), $log->getStatusFromResponse());
         }
 
         return customResponse()
