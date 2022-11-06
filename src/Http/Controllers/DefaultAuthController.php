@@ -25,13 +25,7 @@ class DefaultAuthController extends Controller
      */
     public function register(Request $request): JsonResponse
     {
-        $validated = $request->validate([
-            'email' => 'required',
-            'name' => 'required',
-            'password' => 'required',
-        ]);
-
-        $log = passportPgtClient()->register($validated);
+        $log = passportPgtClient()->register($request->all());
 
         if ($log->getStatusFromResponse() == 200 && $log->getDataFromResponse()->count()) {
             return response()->json($log->getDataFromResponse(), $log->getStatusFromResponse());
