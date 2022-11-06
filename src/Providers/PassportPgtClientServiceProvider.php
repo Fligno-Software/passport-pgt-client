@@ -1,16 +1,39 @@
 <?php
 
-namespace Fld3\PassportPgtClient;
+namespace Fld3\PassportPgtClient\Providers;
 
-use Fligno\StarterKit\Providers\BaseStarterKitServiceProvider;
+use Fld3\PassportPgtClient\Services\PassportPgtClient;
+use Fligno\StarterKit\Abstracts\BaseStarterKitServiceProvider as ServiceProvider;
 
 /**
  * Class PassportPgtClientServiceProvider
  *
  * @author James Carlo Luchavez <jamescarlo.luchavez@fligno.com>
  */
-class PassportPgtClientServiceProvider extends BaseStarterKitServiceProvider
+class PassportPgtClientServiceProvider extends ServiceProvider
 {
+    /**
+     * Publishable Environment Variables
+     *
+     * @example [ 'HELLO_WORLD' => true ]
+     *
+     * @var array
+     */
+    protected array $env_vars = [
+        'PPC_PGC_ID' => null,
+        'PPC_PGC_SECRET' => null,
+    ];
+
+    /**
+     * @return array
+     */
+    public function getEnvVars(): array
+    {
+        $this->env_vars['PPC_PASSPORT_URL'] = config('app.url');
+
+        return $this->env_vars;
+    }
+
     /**
      * Register any package services.
      *
@@ -18,12 +41,12 @@ class PassportPgtClientServiceProvider extends BaseStarterKitServiceProvider
      */
     public function register(): void
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/passport-pgt-client.php', 'passport-pgt-client');
-
         // Register the service the package provides.
         $this->app->singleton('passport-pgt-client', function ($app, $params) {
             return new PassportPgtClient(collect($params)->get('auth_client_controller'));
         });
+
+        parent::register();
     }
 
     /**

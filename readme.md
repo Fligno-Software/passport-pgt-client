@@ -32,7 +32,7 @@ $ composer require fld3/passport-pgt-client
 
 ### Passport PGT Client
 
-The package provides a service called [**PassportPgtClient**](src/PassportPgtClient.php) which you can use by calling its [helper functions](helpers/passport-pgt-client-helper.php):
+The package provides a service called [**PassportPgtClient**](src/Services/PassportPgtClient.php) which you can use by calling its [helper functions](helpers/passport-pgt-client-helper.php):
 1. `passportPgtClient()`
 2. `passport_pgt_client()`
 

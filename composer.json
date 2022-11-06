@@ -14,8 +14,7 @@
     "require": {
         "php": "^8.0",
         "illuminate/support": "~7|~8|~9",
-        "fligno/api-sdk-kit": "^1.2",
-        "fligno/starter-kit": "^2.1"
+        "fligno/api-sdk-kit": "^2.0"
     },
     "require-dev": {
         "roave/security-advisories": "dev-latest",
@@ -35,15 +34,15 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Fld3\\PassportPgtClient\\PassportPgtClientServiceProvider"
+                "Fld3\\PassportPgtClient\\Providers\\PassportPgtClientServiceProvider"
             ],
             "aliases": {
                 "PassportPgtClient": "Fld3\\PassportPgtClient\\Facades\\PassportPgtClient"
             }
         },
         "branch-alias": {
-            "dev-master": "2.0.x-dev",
-            "dev-develop": "2.0.x-dev"
+            "dev-master": "3.0.x-dev",
+            "dev-develop": "3.0.x-dev"
         }
     }
 }
