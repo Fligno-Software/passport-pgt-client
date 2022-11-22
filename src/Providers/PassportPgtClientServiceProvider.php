@@ -22,17 +22,8 @@ class PassportPgtClientServiceProvider extends ServiceProvider
     protected array $env_vars = [
         'PPC_PGC_ID' => null,
         'PPC_PGC_SECRET' => null,
+        'PPC_PASSPORT_URL' => '${APP_URL}'
     ];
-
-    /**
-     * @return array
-     */
-    public function getEnvVars(): array
-    {
-        $this->env_vars['PPC_PASSPORT_URL'] = config('app.url');
-
-        return $this->env_vars;
-    }
 
     /**
      * Register any package services.
